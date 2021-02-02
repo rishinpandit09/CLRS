@@ -1,4 +1,4 @@
-##Exercise 1.1-1 
+###Exercise 1.1-1 
 
 Give a real-world example in which one of the following computational problems appears: sorting, determining the best order for multiplying matrices, or finding the convex hull. 
 
@@ -14,13 +14,13 @@ Convex hull:  The problem of finding convex hulls finds its practical applicatio
 
  
 
-##Exercise 1.1-2 
+###Exercise 1.1-2 
 
 Other than speed, what other measures of efficiency might one use in a real-world setting? 
 
 Memory usage and resource utilization (network, database) are good answers. 
 
-Exercise 1.1-3 
+###Exercise 1.1-3 
 
 Select a data structure that you have seen previously, and discuss its strengths and limitations. 
 
@@ -56,7 +56,7 @@ It takes additional memory for the links
 
  
 
-##Exercise 1.1-4 
+###Exercise 1.1-4 
 
 How are the shortest-path and traveling-salesman problems given above similar? How are they different? 
 
@@ -65,7 +65,7 @@ They are similar, because each of then has to walk a graph and find a path in th
 The difference is the constraint on the solution. The shortest-path requires just a path between two points, while the traveling salesman requires a path between more points that returns to the first point. 
 
  
-##Exercise 1.1-5 
+###Exercise 1.1-5 
 
 Come up with a real-world problem in which only the best solution will do. Then come up with one in which a solution that is "approximately" the best is good enough. 
 
