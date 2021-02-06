@@ -18,7 +18,7 @@ To sort a list of length k using insertion sort, the worst time calculated is  �
 ### Ans-
 Length of each substring = k and number of such substrings is n/k. To get a single merged list, we need to take two such lists at a time and merge themm, then repeat the same process. By this, we will get lg(n/k) steps. Also we compare n elements in each step. Thus the worst time becomes Θ(n lg(n/k)).
 
-## c. Given that the modified algorithm runs in Θ(nk+nlg⁡(n/k))\Theta(nk + n\lg(n / k))Θ(nk+nlg(n/k)) worst-case time, what is the largest value of kkk as a function of nnn for which the modified algorithm has the same running time as standard merge sort, in terms of Θ\ThetaΘ-notation?
+## c. Given that the modified algorithm runs in Θ(nk+nlg⁡(n/k)) worst-case time, what is the largest value of kkk as a function of nnn for which the modified algorithm has the same running time as standard merge sort, in terms of Θ\ThetaΘ-notation?
 ### Ans-
 Assuming k=Θ(lgn),
      Θ(nk+nlg(n/k))=Θ(nk+nlgn−nlgk)
@@ -26,7 +26,7 @@ Assuming k=Θ(lgn),
                    =Θ(2nlgn−nlg(lgn))
                    =Θ(nlgn)
         
-## d. How should we choose kkk in practice?\
+## d. How should we choose k in practice?
 ### Ans-
 We figure out when insertion sort beats merge sort and then pick that number for k.
 
@@ -114,7 +114,51 @@ The loop terminates at i=−1i = -1i=−1. If we substitute,
 The invariant of the loop is a sum that equals a polynomial with the given coefficients.
 
 
+## 2-4 Inversions
+Let A[1,2,....,n] be an array of n distinct numbers. If i<j and A[i]>A[j], then the pair (i,j) is called an inversion of A.
+## a. List the five inversions of the array (2,3,8,6,1)
+### Ans-
+(1,5), (2,5), (3,4), (3,5), (4,5)
 
+## b. What array with elements from the set {1,2,....,n} has the most inversions? How many does it have?
+### Ans-
+The array {n,n−1,…,1} has the most inversions (n−1)+(n−2)+⋯+1=n(n−1)/2.
+
+## c. What is the relationship between the running time of insertion sort and the number of inversions in the input array? Justify your answer.
+### Ans-
+The more inversions, the greater the running time of the insertion sort algorithm is.  The number of inversions determines the actual running time, which varies from the best case Θ(n) to the worst case Θ(n^2). For the former case, the elements are already sorted.  Each element at index jis compared to the element at index j – 1 and stay where it is. While, for the latter, the elements are reversely sorted.  Each element at index jis compared to all elements at index 1 to j – 1 of the sorted section of the array and is inserted at the beginning of the list.
+
+## d. Give an algorithm that determines the number of inversions in any permutation on n elements in Θ(nlg(n)) worst-case time. (Hint: Modify merge sort.)
+### Ans-
+COUNT-INVERSIONS(A, p, r)
+    if p < r
+        q = floor((p + r) / 2)
+        left = COUNT-INVERSIONS(A, p, q)
+        right = COUNT-INVERSIONS(A, q + 1, r)
+        inversions = MERGE-INVERSIONS(A, p, q, r) + left + right
+        return inversions
+MERGE-INVERSIONS(A, p, q, r)
+    n1 = q - p + 1
+    n2 = r - q
+    let L[1..n1 + 1] and R[1..n2 + 1] be new arrays
+    for i = 1 to n1
+        L[i] = A[p + i - 1]
+    for j = 1 to n2
+        R[j] = A[q + j]
+    L[n1 + 1] = ∞
+    R[n2 + 1] = ∞
+    i = 1
+    j = 1
+    inversions = 0
+    for k = p to r
+        if L[i] <= R[j]
+            A[k] = L[i]
+            i = i + 1
+        else
+            inversions = inversions + n1 - i + 1
+            A[k] = R[j]
+            j = j + 1
+    return inversions
 
 
 
